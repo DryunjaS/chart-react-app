@@ -1,0 +1,64 @@
+.styled-range-container {
+	position: relative;
+	margin: 10px;
+}
+
+.styled-range {
+	width: 100%;
+	height: 10px;
+	-webkit-appearance: none;
+	background: linear-gradient(to right, #ccc, #ccc);
+	outline: none;
+	border-radius: 5px;
+	margin: 5px 0;
+	position: relative;
+}
+
+.styled-range::-webkit-slider-thumb {
+	-webkit-appearance: none;
+	appearance: none;
+	width: 20px;
+	height: 20px;
+	border-radius: 50%;
+	background: #3498db;
+	cursor: pointer;
+	margin-top: -5px;
+}
+
+.thumb-value {
+	position: absolute;
+	top: -30px;
+	left: 50%;
+	width: 30px;
+	transform: translateX(-50%);
+	color: #333;
+	padding: 5px;
+	background-color: white;
+	border-radius: 50%;
+	font-size: 14px;
+	font-weight: bold;
+}
+.min-value,
+.max-value {
+	position: absolute;
+	top: -15px;
+	color: white;
+	font-size: 14px;
+}
+
+.min-value {
+	left: 0;
+}
+
+.max-value {
+	right: 0;
+}
+.range-title {
+	font-size: 15px;
+}
+.form-switch {
+	padding-left: 50px;
+}
+.form-check-label {
+	margin-left: -40px;
+}

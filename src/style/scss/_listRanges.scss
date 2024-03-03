@@ -1,0 +1,12 @@
+.listRanges-container {
+	width: 90%;
+	text-align: center;
+	margin: 20px;
+	display: grid;
+	gap: 20px 5px;
+	grid-template-columns: 1fr 1fr 1fr 1fr;
+	.listRanges__item {
+		display: flex;
+		flex-direction: column;
+	}
+}
