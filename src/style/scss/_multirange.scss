@@ -1,5 +1,5 @@
 .multirange-container {
-	height: 70px;
+	height: 40px;
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -8,7 +8,8 @@
 
 .slider {
 	position: relative;
-	width: 200px;
+	// width: 200px;
+	width: 100%;
 }
 
 .slider__track,
@@ -45,10 +46,12 @@
 
 .slider__left-value {
 	left: 6px;
+	top: -43px;
 }
 
 .slider__right-value {
 	right: -4px;
+	top: -43px;
 }
 
 /* Removing the default appearance */
@@ -62,7 +65,9 @@
 	pointer-events: none;
 	position: absolute;
 	height: 0;
-	width: 200px;
+	// width: 200px;
+	width: 21vw;
+
 	outline: none;
 }
 

@@ -1,24 +1,30 @@
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 import { Line } from "react-chartjs-2"
+import { observer } from "mobx-react-lite"
+import store from "../store/store"
 
 const ChartLine = () => {
-	const [labelsArr, setLabelsArr] = useState(
-		Array.from({ length: 5 }, (_, i) => i)
-	)
-	const [dataArr, setDataArr] = useState(
-		Array.from({ length: 5 }, (_, i) => i + 10)
-	)
+	const [labelsArr, setLabelsArr] = useState([])
+	const [dataArr, setDataArr] = useState([])
+
+	useEffect(() => {
+		setLabelsArr(store.arrOX)
+		const tmpArr = store.arrOX.map((label) => (label * 2) % 50)
+		setDataArr(tmpArr)
+	}, [store.arrOX])
+
 	const data = {
 		labels: labelsArr,
 		datasets: [
 			{
-				label: "Dataset 1",
+				label: "Функция Таранова",
 				data: dataArr,
 				borderColor: "#0077ff",
 				backgroundColor: "rgba(255, 99, 132, 0.2)",
 			},
 		],
 	}
+
 	const options = {
 		scales: {
 			x: {
@@ -36,8 +42,8 @@ const ChartLine = () => {
 					display: true,
 					text: "Значение оси OY",
 				},
-				min: 0,
-				max: 100,
+				min: Math.min(...dataArr),
+				max: Math.max(...dataArr),
 			},
 		},
 	}
@@ -50,4 +56,4 @@ const ChartLine = () => {
 	)
 }
 
-export default ChartLine
+export default observer(ChartLine)
