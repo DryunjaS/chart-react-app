@@ -6,50 +6,38 @@ import { observer } from "mobx-react-lite"
 import store from "../store/store"
 
 const ListRanges = () => {
-	const [ranges, setRanges] = useState([
-		"Hz",
-		"Hn",
-		"He",
-		"Hy",
-		"Hg",
-		"Hk",
-		"Hb",
-		"Hf",
-	])
-
-	const [selectedRange, setSelectedRange] = useState(null)
-
-	const handleRangeSelection = (label) => {
-		setSelectedRange(label)
+	const handleCheack = (idBlock) => {
+		store.blocks.map((block) => {
+			if (block.id === idBlock) {
+				block.isCheack = !block.isCheack
+			} else {
+				block.isCheack = false
+			}
+		})
 	}
-
 	return (
 		<div className='listRanges-container'>
-			{ranges.map((range, index) => (
-				<div className='listRanges__item' key={index}>
-					{selectedRange !== range && (
-						<Range
-							label={range}
-							isSelected={selectedRange === range}
-							onSelect={() => handleRangeSelection(range)}
+			{store.blocks.map((block) => (
+				<div className='listRanges__item' key={block.id}>
+					{block.isCheack ? (
+						<MultiRangeSlider
+							idBlock={block.id}
+							min={block.rangeMulti_min}
+							max={block.rangeMulti_max}
+							onChange={({ min, max }) => store.setArrOX(min, max)}
 						/>
+					) : (
+						<Range />
 					)}
-					{selectedRange === range && (
-						<div className='range-footer'>
-							<MultiRangeSlider
-								min={0}
-								max={100}
-								onChange={({ min, max }) => store.setArrOX(min, max)}
-							/>
-							<Form.Check
-								type='switch'
-								id={`custom-switch-${range}`}
-								label={`Значение ${range}`}
-								checked={true}
-								onChange={() => store.setArrOX(0, 100)}
-							/>
-						</div>
-					)}
+
+					<div className='range-footer'>
+						<Form.Check
+							type='switch'
+							label={`Значение ${block.label}`}
+							checked={block.isCheack}
+							onChange={() => handleCheack(block.id)}
+						/>
+					</div>
 				</div>
 			))}
 		</div>

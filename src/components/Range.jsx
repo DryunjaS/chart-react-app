@@ -1,7 +1,7 @@
 import React, { useState } from "react"
 import Form from "react-bootstrap/Form"
 
-const Range = ({ label, isSelected, onSelect }) => {
+const Range = () => {
 	const [value, setValue] = useState(50)
 
 	const handleRangeChange = (event) => {
@@ -10,9 +10,8 @@ const Range = ({ label, isSelected, onSelect }) => {
 
 	return (
 		<div>
-			<div className={`styled-range-container ${isSelected ? "selected" : ""}`}>
+			<div className='styled-range-container'>
 				<div className='min-value'>0</div>
-
 				<Form.Range
 					value={value}
 					min={0}
@@ -22,15 +21,6 @@ const Range = ({ label, isSelected, onSelect }) => {
 				/>
 				<div className='thumb-value'>{value}</div>
 				<div className='max-value'>100</div>
-			</div>
-			<div className='range-footer'>
-				<Form.Check
-					type='switch'
-					id={`custom-switch-${label}`}
-					label={`Значение ${label}`}
-					checked={isSelected}
-					onChange={onSelect}
-				/>
 			</div>
 		</div>
 	)
