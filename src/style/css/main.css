@@ -105,10 +105,6 @@
   padding-left: 50px;
 }
 
-.form-check-label {
-  margin-left: -40px;
-}
-
 .listRanges-container {
   width: 90%;
   text-align: center;
@@ -117,10 +113,34 @@
   gap: 20px 5px;
   grid-template-columns: 1fr 1fr 1fr 1fr;
 }
-.listRanges-container .listRanges__item {
+.listRanges-container .listRanges__item .range-footer {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  width: 100%;
+}
+.listRanges-container .listRanges__item .range-footer .footer__btn {
+  border: 0;
+  background-color: transparent;
+}
+.listRanges-container .listRanges__item .range-footer .footer__btn .footer__btn-img {
+  width: 25px;
+  height: 25px;
+  background-color: white;
+  border-radius: 5px;
+  padding: 5px;
+}
+
+.btn-wrap {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
@@ -150,7 +170,7 @@
 }
 
 .multirange-container {
-  height: 40px;
+  height: 43px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -160,7 +180,7 @@
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  margin: 0 10px;
+  margin: 0 10px 5px 10px;
 }
 
 .slider {

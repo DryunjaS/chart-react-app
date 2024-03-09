@@ -6,7 +6,26 @@
 	gap: 20px 5px;
 	grid-template-columns: 1fr 1fr 1fr 1fr;
 	.listRanges__item {
-		display: flex;
-		flex-direction: column;
+		.range-footer {
+			display: flex;
+			justify-content: space-between;
+			width: 100%;
+			.footer__btn {
+				border: 0;
+				background-color: transparent;
+				.footer__btn-img {
+					width: 25px;
+					height: 25px;
+					background-color: white;
+					border-radius: 5px;
+					padding: 5px;
+				}
+			}
+		}
 	}
+}
+.btn-wrap {
+	display: flex;
+	justify-content: space-between;
+	flex-direction: column;
 }

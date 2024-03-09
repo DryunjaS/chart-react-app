@@ -3,6 +3,7 @@ import Form from "react-bootstrap/Form"
 import Range from "./Range"
 import MultiRangeSlider from "./MultiRange"
 import { observer } from "mobx-react-lite"
+import ModuleEdited from "./ModuleEdited"
 import store from "../store/store"
 
 const ListRanges = () => {
@@ -15,8 +16,15 @@ const ListRanges = () => {
 			}
 		})
 	}
+	const handleEdited = (id) => {
+		console.log("id", id)
+		store.showModuleEdited = true
+		store.currentBlock = id
+	}
 	return (
 		<div className='listRanges-container'>
+			<ModuleEdited />
+
 			{store.blocks.map((block) => (
 				<div className='listRanges__item' key={block.id}>
 					{block.isCheack ? (
@@ -27,7 +35,11 @@ const ListRanges = () => {
 							onChange={({ min, max }) => store.setArrOX(min, max)}
 						/>
 					) : (
-						<Range />
+						<Range
+							idBlock={block.id}
+							min={block.rangeSingle_min}
+							max={block.rangeSingle_max}
+						/>
 					)}
 
 					<div className='range-footer'>
@@ -37,6 +49,12 @@ const ListRanges = () => {
 							checked={block.isCheack}
 							onChange={() => handleCheack(block.id)}
 						/>
+						<button
+							className='footer__btn'
+							onClick={() => handleEdited(block.id)}
+						>
+							<img src='/imgs/edited.png' alt='' className='footer__btn-img' />
+						</button>
 					</div>
 				</div>
 			))}

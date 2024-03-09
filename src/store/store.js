@@ -2,6 +2,8 @@ import { observable } from "mobx"
 
 const store = observable({
 	arrOX: [],
+	showModuleEdited: false,
+	currentBlock: null,
 	blocks: [
 		{
 			id: 1,
@@ -122,7 +124,12 @@ const store = observable({
 			blockToUpdate.valueMulti_max = value
 		}
 	},
-
+	setSingle_value(id, value) {
+		const blockToUpdate = this.blocks.find((block) => block.id === id)
+		if (blockToUpdate) {
+			blockToUpdate.valueSingle = value
+		}
+	},
 	getRangeMulti_min(id) {
 		const block = this.blocks.find((block) => block.id === id)
 		return block ? block.valueMulti_min : null
@@ -130,6 +137,10 @@ const store = observable({
 	getRangeMulti_max(id) {
 		const block = this.blocks.find((block) => block.id === id)
 		return block ? block.valueMulti_max : null
+	},
+	getSingle_value(id) {
+		const block = this.blocks.find((block) => block.id === id)
+		return block ? block.valueSingle : null
 	},
 })
 
