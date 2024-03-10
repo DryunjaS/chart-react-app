@@ -21,13 +21,25 @@ const ModuleEdited = () => {
 				blockToUpdate.rangeMulti_min = minValue
 				blockToUpdate.rangeMulti_max = maxValue
 			} else {
-				console.log("dfghjkl")
 				blockToUpdate.rangeSingle_min = minValue
 				blockToUpdate.rangeSingle_max = maxValue
 			}
 		}
 		store.showModuleEdited = false
 		store.currentBlock = null
+
+		if (blockToUpdate.rangeMulti_min > blockToUpdate.valueMulti_min) {
+			blockToUpdate.valueMulti_min = blockToUpdate.rangeMulti_min
+		}
+		if (blockToUpdate.rangeMulti_max < blockToUpdate.valueMulti_max) {
+			blockToUpdate.valueMulti_max = blockToUpdate.rangeMulti_max
+		}
+		if (blockToUpdate.rangeSingle_min > blockToUpdate.valueSingle) {
+			blockToUpdate.valueSingle = blockToUpdate.rangeSingle_min
+		}
+		if (blockToUpdate.rangeSingle_max < blockToUpdate.valueSingle) {
+			blockToUpdate.valueSingle = blockToUpdate.rangeSingle_max
+		}
 	}
 
 	return (

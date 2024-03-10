@@ -4,8 +4,8 @@ import PropTypes from "prop-types"
 import store from "../store/store"
 
 const MultiRangeSlider = ({ idBlock, min, max, onChange }) => {
-	const [minVal, setMinVal] = useState(store.getRangeMulti_min(idBlock))
-	const [maxVal, setMaxVal] = useState(store.getRangeMulti_max(idBlock))
+	const [minVal, setMinVal] = useState(store.getValueMulti_min(idBlock))
+	const [maxVal, setMaxVal] = useState(store.getValueMulti_max(idBlock))
 	const minValRef = useRef(null)
 	const maxValRef = useRef(null)
 	const range = useRef(null)
@@ -13,7 +13,18 @@ const MultiRangeSlider = ({ idBlock, min, max, onChange }) => {
 		(value) => Math.round(((value - min) / (max - min)) * 100),
 		[min, max]
 	)
-
+	useEffect(() => {
+		console.log("min", min, "minVal", minVal)
+		console.log("max", max, "maxVal", maxVal)
+		if (min > minVal) {
+			setMinVal(min)
+		}
+		if (max < maxVal) {
+			setMaxVal(max)
+		}
+		console.log("min", min, "minVal", minVal)
+		console.log("max", max, "maxVal", maxVal)
+	}, [max, min])
 	useEffect(() => {
 		if (maxValRef.current) {
 			const minPercent = getPercent(minVal)
@@ -23,7 +34,6 @@ const MultiRangeSlider = ({ idBlock, min, max, onChange }) => {
 				range.current.style.width = `${maxPercent - minPercent}%`
 			}
 		}
-		console.log("minVal", minVal, "min", min)
 	}, [minVal, getPercent])
 
 	useEffect(() => {
@@ -52,8 +62,7 @@ const MultiRangeSlider = ({ idBlock, min, max, onChange }) => {
 				onChange={(event) => {
 					const value = Math.min(+event.target.value, maxVal - 1)
 					setMinVal(value)
-					console.log("minVal", value)
-					store.setRangeMulti_min(idBlock, value)
+					store.setValueMulti_min(idBlock, value)
 					event.target.value = value.toString()
 				}}
 				className={classnames("thumb thumb--zindex-3", {
@@ -69,8 +78,7 @@ const MultiRangeSlider = ({ idBlock, min, max, onChange }) => {
 				onChange={(event) => {
 					const value = Math.max(+event.target.value, minVal + 1)
 					setMaxVal(value)
-					console.log("maxVal", value)
-					store.setRangeMulti_max(idBlock, value)
+					store.setValueMulti_max(idBlock, value)
 					event.target.value = value.toString()
 				}}
 				className='thumb thumb--zindex-4'

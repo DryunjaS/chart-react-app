@@ -109,16 +109,15 @@ const store = observable({
 			result.push(i)
 		}
 		this.arrOX = result
-		console.log(result)
 	},
-	setRangeMulti_min(id, value) {
+	setValueMulti_min(id, value) {
 		const blockToUpdate = this.blocks.find((block) => block.id === id)
 		if (blockToUpdate) {
 			blockToUpdate.valueMulti_min = value
 		}
 	},
 
-	setRangeMulti_max(id, value) {
+	setValueMulti_max(id, value) {
 		const blockToUpdate = this.blocks.find((block) => block.id === id)
 		if (blockToUpdate) {
 			blockToUpdate.valueMulti_max = value
@@ -130,17 +129,25 @@ const store = observable({
 			blockToUpdate.valueSingle = value
 		}
 	},
-	getRangeMulti_min(id) {
+	getValueMulti_min(id) {
 		const block = this.blocks.find((block) => block.id === id)
 		return block ? block.valueMulti_min : null
 	},
-	getRangeMulti_max(id) {
+	getValueMulti_max(id) {
 		const block = this.blocks.find((block) => block.id === id)
 		return block ? block.valueMulti_max : null
 	},
 	getSingle_value(id) {
 		const block = this.blocks.find((block) => block.id === id)
 		return block ? block.valueSingle : null
+	},
+	getRangeMulti_min(id) {
+		const block = this.blocks.find((block) => block.id === id)
+		return block ? block.rangeMulti_min : null
+	},
+	getRangeMulti_max(id) {
+		const block = this.blocks.find((block) => block.id === id)
+		return block ? block.rangeMulti_max : null
 	},
 })
 

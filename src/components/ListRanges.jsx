@@ -10,7 +10,7 @@ const ListRanges = () => {
 	const handleCheack = (idBlock) => {
 		store.blocks.map((block) => {
 			if (block.id === idBlock) {
-				block.isCheack = !block.isCheack
+				block.isCheack = true
 			} else {
 				block.isCheack = false
 			}
@@ -30,15 +30,15 @@ const ListRanges = () => {
 					{block.isCheack ? (
 						<MultiRangeSlider
 							idBlock={block.id}
-							min={block.rangeMulti_min}
-							max={block.rangeMulti_max}
+							min={+block.rangeMulti_min}
+							max={+block.rangeMulti_max}
 							onChange={({ min, max }) => store.setArrOX(min, max)}
 						/>
 					) : (
 						<Range
 							idBlock={block.id}
-							min={block.rangeSingle_min}
-							max={block.rangeSingle_max}
+							min={+block.rangeSingle_min}
+							max={+block.rangeSingle_max}
 						/>
 					)}
 
